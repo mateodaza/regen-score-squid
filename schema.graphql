@@ -1,0 +1,24 @@
+type Transfer @entity {
+  id: ID!
+  blockNumber: Int! @index
+  blockTimestamp: DateTime! @index
+  transactionHash: String! @index
+  eventName: String! @index
+  from: String! @index
+  to: String! @index
+  value: BigInt!
+  description: String
+}
+
+type Delegate @entity {
+  id: ID!
+  address: String! @index
+  balance: BigInt!
+}
+
+type TokenBalance @entity {
+  id: ID!
+  address: String! @index
+  balance: BigInt!
+  lastUpdated: DateTime! @index
+}
