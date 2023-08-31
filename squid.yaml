@@ -1,15 +1,16 @@
 manifestVersion: subsquid.io/v0.1
 name: regen-score-squid
 version: 1
-description: A squid indexer generated from an ABI template
-build: 
+description: A squid indexer for RegenScore on ETH and OP
+build:
 deploy:
   addons:
-    postgres: 
+    postgres:
   processor:
-    cmd:
-      - node
-      - lib/main
+    # - name: eth-processor
+    #   cmd: ['node', 'lib/eth/main']
+    - name: op-processor
+      cmd: ['node', 'lib/op/main']
   api:
     cmd:
       - npx

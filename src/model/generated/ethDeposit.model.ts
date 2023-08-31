@@ -1,9 +1,8 @@
 import {Entity as Entity_, Column as Column_, PrimaryColumn as PrimaryColumn_, Index as Index_} from "typeorm"
-import * as marshal from "./marshal"
 
 @Entity_()
-export class Transfer {
-    constructor(props?: Partial<Transfer>) {
+export class EthDeposit {
+    constructor(props?: Partial<EthDeposit>) {
         Object.assign(this, props)
     }
 
@@ -21,14 +20,4 @@ export class Transfer {
     @Index_()
     @Column_("text", {nullable: false})
     from!: string
-
-    @Index_()
-    @Column_("text", {nullable: false})
-    to!: string
-
-    @Column_("numeric", {transformer: marshal.bigintTransformer, nullable: false})
-    value!: bigint
-
-    @Column_("text", {nullable: true})
-    description!: string | undefined | null
 }

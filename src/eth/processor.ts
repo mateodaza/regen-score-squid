@@ -6,17 +6,16 @@ import {
   Transaction as _Transaction,
 } from '@subsquid/evm-processor';
 import { lookupArchive } from '@subsquid/archive-registry';
-import * as contractAbi from './abi/op';
+import * as contractAbi from '../abi/beaconDeposit';
 
-const OP_TOKEN_ADDRESS = '0x4200000000000000000000000000000000000042';
+const BEACON_DEPOSIT = '0x00000000219ab540356cBB839Cbe05303d7705Fa';
 
-export const processor = new EvmBatchProcessor()
+export const mainnetProcessor = new EvmBatchProcessor()
   .setDataSource({
-    archive: lookupArchive('optimism-mainnet', { type: 'EVM' }),
+    archive: lookupArchive('eth-mainnet', { type: 'EVM' }),
   })
   .setBlockRange({
-    // from: 73220860,
-    from: 108000000,
+    from: 1_052_984, // Beacon genesis
   })
   .setFields({
     log: {
@@ -33,15 +32,14 @@ export const processor = new EvmBatchProcessor()
     },
   })
   .addLog({
-    address: [OP_TOKEN_ADDRESS],
-    topic0: [contractAbi.events['Transfer'].topic],
+    address: [BEACON_DEPOSIT],
+    topic0: [contractAbi.events['DepositEvent'].topic],
   })
-  .addLog({
-    address: [OP_TOKEN_ADDRESS],
-    topic0: [contractAbi.events['DelegateVotesChanged'].topic],
+  .addTransaction({
+    to: [BEACON_DEPOSIT],
   });
 
-export type Fields = EvmBatchProcessorFields<typeof processor>;
+export type Fields = EvmBatchProcessorFields<typeof mainnetProcessor>;
 export type Block = BlockHeader<Fields>;
 export type Log = _Log<Fields>;
 export type Transaction = _Transaction<Fields>;
