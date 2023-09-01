@@ -23,6 +23,7 @@ mainnetProcessor.run(
             new EthDeposit({
               id: `${log.transactionHash}-${log.logIndex}`,
               blockNumber: block.header.height,
+              blockTimestamp: new Date(block.header.timestamp),
               transactionHash: log.transactionHash,
               from: fromAddress,
             })

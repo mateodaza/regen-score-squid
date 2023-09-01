@@ -15,8 +15,7 @@ export const optimismProcessor = new EvmBatchProcessor()
     archive: lookupArchive('optimism-mainnet', { type: 'EVM' }),
   })
   .setBlockRange({
-    from: 108_921_012,
-    // from: 73_220_860,
+    from: 6_490_467, // OP Deployment
     // from: 108_000_000,
   })
   .setFields({

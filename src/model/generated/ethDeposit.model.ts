@@ -14,6 +14,10 @@ export class EthDeposit {
     blockNumber!: number
 
     @Index_()
+    @Column_("timestamp with time zone", {nullable: false})
+    blockTimestamp!: Date
+
+    @Index_()
     @Column_("text", {nullable: false})
     transactionHash!: string
 

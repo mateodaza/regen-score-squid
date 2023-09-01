@@ -17,6 +17,7 @@ type Delegate @entity {
 type EthDeposit @entity {
   id: ID!
   blockNumber: Int! @index
+  blockTimestamp: DateTime! @index
   transactionHash: String! @index
   from: String! @index
 }

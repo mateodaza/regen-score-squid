@@ -15,8 +15,16 @@ export class Transfer {
     blockNumber!: number
 
     @Index_()
+    @Column_("timestamp with time zone", {nullable: false})
+    blockTimestamp!: Date
+
+    @Index_()
     @Column_("text", {nullable: false})
     transactionHash!: string
+
+    @Index_()
+    @Column_("text", {nullable: false})
+    eventName!: string
 
     @Index_()
     @Column_("text", {nullable: false})
