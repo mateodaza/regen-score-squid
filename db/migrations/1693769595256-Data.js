@@ -1,12 +1,11 @@
-module.exports = class Data1693522871910 {
-    name = 'Data1693522871910'
+module.exports = class Data1693769595256 {
+    name = 'Data1693769595256'
 
     async up(db) {
-        await db.query(`CREATE TABLE "transfer" ("id" character varying NOT NULL, "block_number" integer NOT NULL, "block_timestamp" TIMESTAMP WITH TIME ZONE NOT NULL, "transaction_hash" text NOT NULL, "event_name" text NOT NULL, "from" text NOT NULL, "to" text NOT NULL, "value" numeric NOT NULL, "description" text, CONSTRAINT "PK_fd9ddbdd49a17afcbe014401295" PRIMARY KEY ("id"))`)
+        await db.query(`CREATE TABLE "transfer" ("id" character varying NOT NULL, "block_number" integer NOT NULL, "block_timestamp" TIMESTAMP WITH TIME ZONE NOT NULL, "transaction_hash" text NOT NULL, "from" text NOT NULL, "to" text NOT NULL, "value" numeric NOT NULL, "description" text, CONSTRAINT "PK_fd9ddbdd49a17afcbe014401295" PRIMARY KEY ("id"))`)
         await db.query(`CREATE INDEX "IDX_d6624eacc30144ea97915fe846" ON "transfer" ("block_number") `)
         await db.query(`CREATE INDEX "IDX_b31e4703e54f35e045bde3d769" ON "transfer" ("block_timestamp") `)
         await db.query(`CREATE INDEX "IDX_e8a057744db5ad984bbea97444" ON "transfer" ("transaction_hash") `)
-        await db.query(`CREATE INDEX "IDX_77e127a622dc94aeb47fba01ac" ON "transfer" ("event_name") `)
         await db.query(`CREATE INDEX "IDX_be54ea276e0f665ffc38630fc0" ON "transfer" ("from") `)
         await db.query(`CREATE INDEX "IDX_4cbc37e8c3b47ded161f44c24f" ON "transfer" ("to") `)
         await db.query(`CREATE TABLE "delegate" ("id" character varying NOT NULL, "address" text NOT NULL, "balance" numeric NOT NULL, CONSTRAINT "PK_810516365b3daa9f6d6d2d4f2b7" PRIMARY KEY ("id"))`)
@@ -16,6 +15,14 @@ module.exports = class Data1693522871910 {
         await db.query(`CREATE INDEX "IDX_cdb623105c3e2abbed5230df0e" ON "eth_deposit" ("block_timestamp") `)
         await db.query(`CREATE INDEX "IDX_27e9536fce4a68ad0cefad9d5c" ON "eth_deposit" ("transaction_hash") `)
         await db.query(`CREATE INDEX "IDX_041f1746e952f2bc57e4d9b9b7" ON "eth_deposit" ("from") `)
+        await db.query(`CREATE TABLE "bridge" ("id" character varying NOT NULL, "block_number" integer NOT NULL, "transaction_hash" text NOT NULL, "local_token" text NOT NULL, "remote_token" text NOT NULL, "from" text NOT NULL, "to" text NOT NULL, "amount" numeric NOT NULL, "event_type" text NOT NULL, CONSTRAINT "PK_54088cc9814ead2dffd5cb62030" PRIMARY KEY ("id"))`)
+        await db.query(`CREATE INDEX "IDX_ec224b9311a29384d31d9d4765" ON "bridge" ("block_number") `)
+        await db.query(`CREATE INDEX "IDX_10b97b3575d46f564fbce6db08" ON "bridge" ("transaction_hash") `)
+        await db.query(`CREATE INDEX "IDX_217c316ca99d3a6f2e0dc4e859" ON "bridge" ("local_token") `)
+        await db.query(`CREATE INDEX "IDX_fbd32200f57ffeb88f996028ad" ON "bridge" ("remote_token") `)
+        await db.query(`CREATE INDEX "IDX_cdad123d03bb5c6bbf8d48d218" ON "bridge" ("from") `)
+        await db.query(`CREATE INDEX "IDX_543c82ac9c39b76d85261da571" ON "bridge" ("to") `)
+        await db.query(`CREATE INDEX "IDX_d878da8a7d9e710638b17298a1" ON "bridge" ("event_type") `)
     }
 
     async down(db) {
@@ -23,7 +30,6 @@ module.exports = class Data1693522871910 {
         await db.query(`DROP INDEX "public"."IDX_d6624eacc30144ea97915fe846"`)
         await db.query(`DROP INDEX "public"."IDX_b31e4703e54f35e045bde3d769"`)
         await db.query(`DROP INDEX "public"."IDX_e8a057744db5ad984bbea97444"`)
-        await db.query(`DROP INDEX "public"."IDX_77e127a622dc94aeb47fba01ac"`)
         await db.query(`DROP INDEX "public"."IDX_be54ea276e0f665ffc38630fc0"`)
         await db.query(`DROP INDEX "public"."IDX_4cbc37e8c3b47ded161f44c24f"`)
         await db.query(`DROP TABLE "delegate"`)
@@ -33,5 +39,13 @@ module.exports = class Data1693522871910 {
         await db.query(`DROP INDEX "public"."IDX_cdb623105c3e2abbed5230df0e"`)
         await db.query(`DROP INDEX "public"."IDX_27e9536fce4a68ad0cefad9d5c"`)
         await db.query(`DROP INDEX "public"."IDX_041f1746e952f2bc57e4d9b9b7"`)
+        await db.query(`DROP TABLE "bridge"`)
+        await db.query(`DROP INDEX "public"."IDX_ec224b9311a29384d31d9d4765"`)
+        await db.query(`DROP INDEX "public"."IDX_10b97b3575d46f564fbce6db08"`)
+        await db.query(`DROP INDEX "public"."IDX_217c316ca99d3a6f2e0dc4e859"`)
+        await db.query(`DROP INDEX "public"."IDX_fbd32200f57ffeb88f996028ad"`)
+        await db.query(`DROP INDEX "public"."IDX_cdad123d03bb5c6bbf8d48d218"`)
+        await db.query(`DROP INDEX "public"."IDX_543c82ac9c39b76d85261da571"`)
+        await db.query(`DROP INDEX "public"."IDX_d878da8a7d9e710638b17298a1"`)
     }
 }

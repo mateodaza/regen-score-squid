@@ -31,7 +31,6 @@ optimismProcessor.run(
                   blockTimestamp: new Date(block.header.timestamp),
                   blockNumber: block.header.height,
                   transactionHash: log.transactionHash,
-                  eventName: 'Transfer',
                   description: 'Treasury',
                 })
               );

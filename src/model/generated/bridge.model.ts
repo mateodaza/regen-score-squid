@@ -2,8 +2,8 @@ import {Entity as Entity_, Column as Column_, PrimaryColumn as PrimaryColumn_, I
 import * as marshal from "./marshal"
 
 @Entity_()
-export class Transfer {
-    constructor(props?: Partial<Transfer>) {
+export class Bridge {
+    constructor(props?: Partial<Bridge>) {
         Object.assign(this, props)
     }
 
@@ -15,12 +15,16 @@ export class Transfer {
     blockNumber!: number
 
     @Index_()
-    @Column_("timestamp with time zone", {nullable: false})
-    blockTimestamp!: Date
+    @Column_("text", {nullable: false})
+    transactionHash!: string
 
     @Index_()
     @Column_("text", {nullable: false})
-    transactionHash!: string
+    localToken!: string
+
+    @Index_()
+    @Column_("text", {nullable: false})
+    remoteToken!: string
 
     @Index_()
     @Column_("text", {nullable: false})
@@ -31,8 +35,9 @@ export class Transfer {
     to!: string
 
     @Column_("numeric", {transformer: marshal.bigintTransformer, nullable: false})
-    value!: bigint
+    amount!: bigint
 
-    @Column_("text", {nullable: true})
-    description!: string | undefined | null
+    @Index_()
+    @Column_("text", {nullable: false})
+    eventType!: string
 }

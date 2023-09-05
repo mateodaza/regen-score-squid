@@ -1,5 +1,5 @@
 manifestVersion: subsquid.io/v0.1
-name: regen-score-squid
+name: regen-score-squid-eth
 version: 3
 description: A squid indexer for RegenScore on ETH and OP
 build:
@@ -7,10 +7,10 @@ deploy:
   addons:
     postgres:
   processor:
-    # - name: eth-processor
-    #   cmd: ['node', 'lib/eth/main']
-    - name: op-processor
-      cmd: ['node', 'lib/op/main']
+    - name: eth-processor
+      cmd: ['node', 'lib/eth/main']
+    # - name: op-processor
+    #   cmd: ['node', 'lib/op/main']
   api:
     cmd:
       - npx
