@@ -7,7 +7,7 @@ import { TypeormDatabase } from '@subsquid/typeorm-store';
 
 mainnetProcessor.run(
   new TypeormDatabase({
-    supportHotBlocks: false,
+    supportHotBlocks: true,
     stateSchema: 'mainnet_processor',
   }),
   async (ctx) => {

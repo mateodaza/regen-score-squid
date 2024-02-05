@@ -10,7 +10,7 @@ const OP_TREASURY = '0x2501c477d0a35545a387aa4a3eee4292a9a8b3f0';
 
 optimismProcessor.run(
   new TypeormDatabase({
-    supportHotBlocks: false,
+    supportHotBlocks: true,
     stateSchema: 'op_processor',
   }),
   async (ctx) => {
