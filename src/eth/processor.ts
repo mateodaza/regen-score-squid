@@ -19,6 +19,7 @@ export const mainnetProcessor = new EvmBatchProcessor()
       url: "https://eth.meowrpc.com"
     }
   })
+  .setFinalityConfirmation(1)
   .setBlockRange({
     // from: 16057388, // L1StandardBridge
     from: 1_052_984, // Beacon genesis

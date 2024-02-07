@@ -17,6 +17,7 @@ export const optimismProcessor = new EvmBatchProcessor()
       url: "https://optimism.meowrpc.com"
     }
   })
+  .setFinalityConfirmation(1)
   .setBlockRange({
     from: 6_490_467, // OP Deployment
     // from: 108_000_000,
