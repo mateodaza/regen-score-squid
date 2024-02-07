@@ -15,6 +15,9 @@ const OPTIMISM_BRIDGE = '0x99C9fc46f92E8a1c0deC1b1747d010903E884bE1';
 export const mainnetProcessor = new EvmBatchProcessor()
   .setDataSource({
     archive: lookupArchive('eth-mainnet', { type: 'EVM' }),
+    chain: {
+      url: "https://eth.meowrpc.com"
+    }
   })
   .setBlockRange({
     // from: 16057388, // L1StandardBridge
