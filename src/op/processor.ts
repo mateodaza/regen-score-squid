@@ -13,7 +13,11 @@ const OP_TOKEN_ADDRESS = '0x4200000000000000000000000000000000000042';
 export const optimismProcessor = new EvmBatchProcessor()
   .setDataSource({
     archive: lookupArchive('optimism-mainnet', { type: 'EVM' }),
+    chain: {
+      url: "https://optimism.meowrpc.com"
+    }
   })
+  .setFinalityConfirmation(1)
   .setBlockRange({
     from: 6_490_467, // OP Deployment
     // from: 108_000_000,
