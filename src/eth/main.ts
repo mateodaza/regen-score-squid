@@ -31,8 +31,9 @@ mainnetProcessor.run(
           );
         }
         if (
-          log.topics[0].toLowerCase() ===
-          bridgeAbi.events.ERC20DepositInitiated.topic.toLowerCase()
+          log.topics[0] &&
+          log.topics[0]?.toLowerCase() ===
+            bridgeAbi.events.ERC20DepositInitiated.topic?.toLowerCase()
         ) {
           const eventData =
             bridgeAbi.events['ERC20DepositInitiated'].decode(log);
@@ -52,8 +53,9 @@ mainnetProcessor.run(
           );
         }
         if (
+          log.topics[0] &&
           log.topics[0].toLowerCase() ===
-          bridgeAbi.events.ETHDepositInitiated.topic.toLowerCase()
+            bridgeAbi.events.ETHDepositInitiated.topic?.toLowerCase()
         ) {
           const eventData = bridgeAbi.events['ETHDepositInitiated'].decode(log);
 

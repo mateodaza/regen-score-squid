@@ -9,8 +9,8 @@ deploy:
   processor:
     - name: eth-processor
       cmd: ['node', 'lib/eth/main']
-    # - name: op-processor
-    #   cmd: ['node', 'lib/op/main']
+    - name: op-processor
+      cmd: ['node', 'lib/op/main']
   api:
     cmd:
       - npx
